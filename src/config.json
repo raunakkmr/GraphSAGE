@@ -1,0 +1,15 @@
+{
+    "print_every" : 3,
+    "dataset" : "cora",
+    "dataset_path" : "/Users/raunak/Documents/Datasets/Cora",
+    "mode" : "train",
+    "task" : "node_classification",
+    "agg_class" : "MaxPoolAggregator",
+    "cuda" : "True",
+    "hidden_dims" : [16],
+    "num_samples" : -1,
+    "batch_size" : 16,
+    "epochs" : 2,
+    "lr" : 1e-3,
+    "weight_decay" : 5e-3
+}

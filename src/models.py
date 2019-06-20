@@ -8,7 +8,8 @@ from layers import MeanAggregator, LSTMAggregator, MaxPoolAggregator, MeanPoolAg
 class GraphSAGE(nn.Module):
 
     def __init__(self, input_dim, hidden_dims, output_dim,
-                 agg_class=MaxPoolAggregator, num_samples=25, device='cpu'):
+                 agg_class=MaxPoolAggregator, dropout=0.5, num_samples=25,
+                 device='cpu'):
         """
         Parameters
         ----------
@@ -21,6 +22,8 @@ class GraphSAGE(nn.Module):
         agg_class : An aggregator class.
             Aggregator. One of the aggregator classes imported at the top of
             this module. Default: MaxPoolAggregator.
+        dropout : float
+            Dropout parameter.
         num_samples : int
             Number of neighbors to sample while aggregating. Default: 25.
         """
@@ -42,6 +45,10 @@ class GraphSAGE(nn.Module):
         self.fcs = nn.ModuleList([nn.Linear(c*input_dim, hidden_dims[0])])
         self.fcs.extend([nn.Linear(c*hidden_dims[i-1], hidden_dims[i]) for i in range(1, len(hidden_dims))])
         self.fcs.extend([nn.Linear(c*hidden_dims[-1], output_dim)])
+
+        self.bns = nn.ModuleList([nn.BatchNorm1d(hidden_dim) for hidden_dim in hidden_dims])
+
+        self.dropout = nn.Dropout(dropout)
 
         self.relu = nn.ReLU()
 
@@ -79,7 +86,9 @@ class GraphSAGE(nn.Module):
             out = torch.cat((out[cur_mapped_nodes, :], aggregate), dim=1)
             out = self.fcs[k](out)
             if k+1 < self.num_layers:
+                out = self.bns[k](out)
                 out = self.relu(out)
+                out = self.dropout(out)
                 out = out.div(out.norm(dim=1, keepdim=True)+1e-6)
 
         return out

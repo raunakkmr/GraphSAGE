@@ -32,7 +32,8 @@ def main():
 
     agg_class = utils.get_agg_class(config['agg_class'])
     model = models.GraphSAGE(input_dim, config['hidden_dims'], output_dim, 
-                             agg_class, config['num_samples'], device)
+                             agg_class, config['dropout'],
+                             config['num_samples'], device)
     model.to(device)
 
     if not config['load']:

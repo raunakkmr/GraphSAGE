@@ -120,10 +120,10 @@ def parse_args():
                         choices=[MeanAggregator, LSTMAggregator, MaxPoolAggregator, MeanPoolAggregator],
                         default=MaxPoolAggregator,
                         help='aggregator class, default: MaxPoolAggregator')
+    parser.add_argument('--dropout', type=float, default=0.5,
+                        help='dropout parameter, default=0.5.')
     parser.add_argument('--cuda', action='store_true',
                         help='whether to use GPU, default: False')
-    parser.add_argument('--dropout', type=float, default=0.5,
-                        help='dropout out, currently only for GCN, default: 0.5')
     parser.add_argument('--hidden_dims', type=int, nargs="*",
                         help='dimensions of hidden layers, length should be equal to num_layers, specify through config.json')
     parser.add_argument('--num_samples', type=int, default=25,

@@ -4,12 +4,16 @@
     "dataset_path" : "/Users/raunak/Documents/Datasets/Cora",
     "mode" : "train",
     "task" : "node_classification",
-    "agg_class" : "MaxPoolAggregator",
+    "agg_class" : "MeanAggregator",
     "cuda" : "True",
     "hidden_dims" : [16],
+    "dropout" : 0.5,
     "num_samples" : -1,
     "batch_size" : 16,
-    "epochs" : 2,
-    "lr" : 1e-3,
-    "weight_decay" : 5e-3
+    "epochs" : 200,
+    "lr" : 1e-2,
+    "weight_decay" : 5e-4,
+    "self_loop" : "True",
+    "normalize_adj" : "True",
+    "transductive" : "True"
 }

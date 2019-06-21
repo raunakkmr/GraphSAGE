@@ -23,9 +23,11 @@ class GraphSAGE(nn.Module):
             Aggregator. One of the aggregator classes imported at the top of
             this module. Default: MaxPoolAggregator.
         dropout : float
-            Dropout parameter.
+            Dropout rate. Default: 0.5.
         num_samples : int
             Number of neighbors to sample while aggregating. Default: 25.
+        device : str
+            'cpu' or 'cuda:0'. Default: 'cpu'.
         """
         super(GraphSAGE, self).__init__()
 

@@ -37,8 +37,8 @@ class Aggregator(nn.Module):
             its position in the layer of nodes in the computationn graph
             before nodes. For example, if the layer before nodes is [2,5],
             then mapping[2] = 0 and mapping[5] = 1.
-        cur_rows : numpy array
-            cur_rows[i] is an array of neighbors of node i which is present in ndoes.
+        rows : numpy array
+            rows[i] is an array of neighbors of node i which is present in nodes.
         num_samples : int
             Number of neighbors to sample while aggregating. Default: 25.
 

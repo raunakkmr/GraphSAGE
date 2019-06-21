@@ -1,5 +1,3 @@
-import argparse
-import json
 from math import ceil
 import os
 import sys

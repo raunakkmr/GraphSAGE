@@ -3,6 +3,7 @@ import math
 import numpy as np
 import torch
 import torch.nn as nn
+
 class Aggregator(nn.Module):
 
     def __init__(self, input_dim=None, output_dim=None, device='cpu'):

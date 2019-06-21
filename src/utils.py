@@ -35,9 +35,9 @@ def get_criterion(task):
         Loss function for the task.
     """
     if task == 'node_classification':
-        critertion = nn.CrossEntropyLoss()
+        criterion = nn.CrossEntropyLoss()
 
-    return critertion
+    return criterion
 
 def get_dataset(args):
     """

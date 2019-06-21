@@ -125,7 +125,7 @@ def parse_args():
     parser.add_argument('--cuda', action='store_true',
                         help='whether to use GPU, default: False')
     parser.add_argument('--hidden_dims', type=int, nargs="*",
-                        help='dimensions of hidden layers, length should be equal to num_layers, specify through config.json')
+                        help='dimensions of hidden layers, specify through config.json')
     parser.add_argument('--num_samples', type=int, default=25,
                         help='number of neighbors to sample, default=25')
 

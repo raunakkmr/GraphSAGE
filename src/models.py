@@ -88,8 +88,8 @@ class GraphSAGE(nn.Module):
             out = torch.cat((out[cur_mapped_nodes, :], aggregate), dim=1)
             out = self.fcs[k](out)
             if k+1 < self.num_layers:
-                out = self.bns[k](out)
                 out = self.relu(out)
+                out = self.bns[k](out)
                 out = self.dropout(out)
                 out = out.div(out.norm(dim=1, keepdim=True)+1e-6)
 

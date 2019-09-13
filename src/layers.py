@@ -159,7 +159,7 @@ class MeanPoolAggregator(PoolAggregator):
         -------
         Aggregated feature.
         """
-        return torch.mean(features, dim=0)[0]
+        return torch.mean(features, dim=0)
 
 class LSTMAggregator(Aggregator):
 

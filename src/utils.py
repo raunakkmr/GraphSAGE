@@ -1,4 +1,5 @@
 import argparse
+import importlib
 import json
 import sys
 
@@ -52,9 +53,8 @@ def get_dataset(args):
         The dataset.
     """
     task, dataset_name, *dataset_args = args
-    if task == 'node_classification':
-        if dataset_name == 'cora':
-            dataset = node_classification.Cora(*dataset_args)
+    class_attr = getattr(importlib.import_module('datasets.{}'.format(task)), dataset_name)
+    dataset = class_attr(*dataset_args)
 
     return dataset
 
